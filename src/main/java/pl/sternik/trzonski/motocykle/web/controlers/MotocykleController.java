@@ -48,7 +48,7 @@ public class MotocykleController {
         result = klaserService.findById(id);
         if (result.isPresent()) {
             Motocykl motocykl = result.get();
-            model.addAttribute("moneta", motocykl);
+            model.addAttribute("motocykl", motocykl);
             return "motocykl";
         } else {
             notifyService.addErrorMessage("Cannot find motocykl #" + id);
@@ -66,7 +66,7 @@ public class MotocykleController {
             Motocykl motocykl = result.get();
             return new ResponseEntity<Motocykl>(motocykl, HttpStatus.OK);
         } else {
-            notifyService.addErrorMessage("Cannot find moneta #" + id);
+            notifyService.addErrorMessage("Cannot find motocykl #" + id);
             model.clear();
             return new ResponseEntity<Motocykl>(HttpStatus.NOT_FOUND);
         }
@@ -78,7 +78,7 @@ public class MotocykleController {
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
             model.addAttribute("MyMessages",notifyService.getNotificationMessages());
-            return "moneta";
+            return "motocykl";
         }
         Optional<Motocykl> result = klaserService.edit(motocykl);
         if (result.isPresent())
@@ -94,7 +94,7 @@ public class MotocykleController {
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
             model.addAttribute("MyMessages",notifyService.getNotificationMessages());
-            return "moneta";
+            return "motocykl";
         }
         klaserService.create(motocykl);
         model.clear();

@@ -46,12 +46,12 @@ public class KlaserServiceJ8Impl implements KlaserService {
     }
 
     @Override
-    public Optional<Motocykl> create(Motocykl moneta) {
+    public Optional<Motocykl> create(Motocykl motocykl) {
         try {
-            return Optional.of(motocykle.create(moneta));
+            return Optional.of(motocykle.create(motocykl));
         } catch (MotocyklAlreadyExistsException e) {
             try {
-                return Optional.of(motocykle.readById(moneta.getNumerKatalogowy()));
+                return Optional.of(motocykle.readById(motocykl.getNumerKatalogowy()));
             } catch (NoSuchMotocyklException e1) {
                 return Optional.empty();
             }

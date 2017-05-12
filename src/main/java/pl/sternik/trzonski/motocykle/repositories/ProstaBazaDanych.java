@@ -46,7 +46,7 @@ public class ProstaBazaDanych implements MotocykleRepository {
     public Motocykl create(Motocykl motocykl) throws MotocyklAlreadyExistsException {
         if (motocykl.getNumerKatalogowy() != null && baza[motocykl.getNumerKatalogowy().intValue()] != null) {
             if (motocykl.getNumerKatalogowy().equals(baza[motocykl.getNumerKatalogowy().intValue()].getNumerKatalogowy())) {
-                throw new MotocyklAlreadyExistsException("Już jest moneta o takim numerze.");
+                throw new MotocyklAlreadyExistsException("Już jest motocykl o takim numerze.");
             }
         }
         for (int i = 0; i < baza.length; i++) {
