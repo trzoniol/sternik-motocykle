@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout ::site-head">
+<title>Motocykle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all" href="../../css/klaser.css" th:href="@{/css/klaser.css}" />
+</head>
+
+<body>
+  
+  <header th:replace="layout :: site-header" />
+       
+       <div class="listaMonet" th:unless="${#lists.isEmpty(coinsAll)}">
+    <table>
+      <thead>
+        <tr>
+          <th th:text="#{klaser.numerKatalogowy}">numerKatalogowy</th>
+          <th th:text="#{klaser.producent}">Producent</th>
+          <th th:text="#{klaser.model}">Model</th>
+          <th th:text="#{klaser.dataProdukcji}">dataProdukji</th>
+          <th th:text="#{klaser.cena}">cena</th>	
+          <th th:text="#{klaser.status}">status</th>
+          <th th:text="#{klaser.operacje}">operacje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="coin : ${coinsDublety}">
+          <form action="#" th:action="@{/motocykle}" th:object="${coin}" method="post">
+          <td th:text="${coin.numerKatalogowy}">1</td>
+          <td th:text="${coin.producent}">producent</td>
+          <td th:text="${coin.model}">model</td>
+          <td th:text="${{coin.dataProdukcji}}">2011/13/01</td> 
+          <td th:text="${{coin.cena}}">1000</td>
+          <td th:text="#{${'klaser.status.' + coin.status}}">Nowa</td>
+          <td>
+            <button class="btn btn-danger btn-sm" type="submit" name="remove" th:value="${coin.numerKatalogowy}"><span class="glyphicon glyphicon-trash"></span></button>
+            
+            <a href="moneta.html" th:href="@{|/motocykle/${coin.numerKatalogowy}|}" >
+            <button class="btn btn-info btn-sm" type="button" ><span class="glyphicon glyphicon-edit"></span></button></a>            
+          </td>
+          </form>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+             
+  
+  <footer th:replace="layout :: site-footer" />
+  
+
+</body>
+
+</html>
